@@ -1,0 +1,40 @@
+//Update OpenSSL to 3.0 on Centos 7
+
+//Prerequisites
+// - Use sudo when needed
+// - Install perl-IPC-Cmd, perl-Test-Simple and gcc
+
+# sudo yum install perl-IPC-Cmd perl-Test-Simple gcc
+
+//Download OpenSSL 3.0
+
+//Go to OpenSSL’s download page, /source/index.html. Right-click openssl-3.0.0.tar.gz file and copy link address. Currently the link address is https://www.openssl.org/source/openssl-3.0.0.tar.gz
+
+# cd /usr/src
+# wget https://www.openssl.org/source/openssl-3.0.0.tar.gz
+# tar -zxf openssl-3.0.0.tar.gz
+# rm openssl-3.0.0.tar.gz
+
+//Manually compile, make, test and install OpenSSL 3.0
+
+# cd openssl-3.0.0
+# ./config
+# make 
+# make test
+# make install
+
+//Create symlinks to libssl and libcrypto
+
+# ln -s /usr/local/lib64/libssl.so.3 /usr/lib64/libssl.so.3
+# ln -s /usr/local/lib64/libcrypto.so.3 /usr/lib64/libcrypto.so.3
+
+
+# sudo cp /usr/local/bin/openssl /usr/bin/openssl
+
+Verify the newly installed OpenSSL 3.0.0 
+
+# openssl version
+
+
+
+

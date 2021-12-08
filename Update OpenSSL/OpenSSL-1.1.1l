@@ -1,0 +1,36 @@
+//Update OpenSSL to 1.1.1l version on Centos 7
+
+//Prerequisites
+//  - Install perl-IPC-Cmd, perl-Test-Simple, gcc by using: 
+
+# sudo yum install perl-IPC-Cmd perl-Test-Simple gcc 
+
+//Download the 1.1.1l version of OpenSSL
+
+//Go to OpenSSL's download page and copy the link to the latest version. At this time it's 1.1.1l.
+
+# cd /usr/src
+# wget https://www.openssl.org/source/openssl-1.1.1l.tar.gz --no-check-certificate 
+# tar -xvzf openssl-1.1.1l.tar.gz
+# rm openssl-1.1.1l.tar.gz
+
+//Manually compile, make, test and install OpenSSL
+
+# cd /usr/src/openssl-1.1.1l
+# ./config
+# make
+# make test
+# make install
+
+//Create symlinks to libssl and libcrypto
+
+# ln -s /usr/local/lib64/libssl.so.1.1 /usr/lib64/libssl.so.1.1
+# ln -s /usr/local/lib64/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1 
+
+//Move the newly installed OpenSSL binary to the PATH
+
+# sudo mv /usr/local/bin/openssl /usr/bin/openssl
+
+//Verify the newly installed OpenSSL version
+
+# openssl version
